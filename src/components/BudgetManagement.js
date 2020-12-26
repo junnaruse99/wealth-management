@@ -1,3 +1,4 @@
+import { checkBudget } from '../helpers'
 
 const BudgetManagement = ( {budget, remaining} ) => {
     return ( 
@@ -5,7 +6,7 @@ const BudgetManagement = ( {budget, remaining} ) => {
             <div className="alert alert-primary">
                 Budget: $ {budget}
             </div>
-            <div className="alert">
+            <div className={checkBudget(budget, remaining)}>
                 Remaining: $ {remaining}
             </div>
         </>

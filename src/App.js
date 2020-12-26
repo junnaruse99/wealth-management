@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Question from './components/Question'
+import Form from './components/Form'
 
 function App() {
+
+  // Define budget and remaining
+  const [ budget, saveBudget ] = useState(0);
+  const [ remaining, saveRemaining ] = useState(0);
+  const [ question, updateQuestion ] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <h1>Weekly expenses</h1>
       </header>
-    </div>
+
+      <div className="container">
+        <div className="principal-content content">
+          { question 
+          ? (
+              <Question 
+                saveBudget={saveBudget}
+                saveRemaining={saveRemaining}
+                updateQuestion={updateQuestion}
+              />
+            )
+          : (
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <Form />
+                </div>
+                <div className="col-12 col-md-6">
+                  
+                </div>
+              </div>
+            )
+          }  
+        </div> 
+      </div>
+    </>
   );
 }
 

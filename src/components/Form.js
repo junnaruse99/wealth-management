@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error'
 import shortid from 'shortid';
-
+import PropTypes from 'prop-types'
                     
 const Form = ( {expenses, updateExpenses} ) => {
     
@@ -33,8 +33,6 @@ const Form = ( {expenses, updateExpenses} ) => {
         }
 
         updateExpenses( [...expenses, expense] )
-
-        console.log(expense)
 
         // Clean all fields
         saveName('');
@@ -81,5 +79,10 @@ const Form = ( {expenses, updateExpenses} ) => {
         </>
      );
 }
- 
+
+Form.propTypes = {
+    expenses: PropTypes.array.isRequired,
+    updateExpenses: PropTypes.func.isRequired
+}
+
 export default Form;

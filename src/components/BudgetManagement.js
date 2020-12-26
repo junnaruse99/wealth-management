@@ -1,4 +1,5 @@
 import { checkBudget } from '../helpers'
+import PropTypes from 'prop-types'
 
 const BudgetManagement = ( {budget, remaining} ) => {
     return ( 
@@ -11,6 +12,11 @@ const BudgetManagement = ( {budget, remaining} ) => {
             </div>
         </>
      );
+}
+
+BudgetManagement.propTypes = {
+    budget: PropTypes.number.isRequired,
+    remaining: PropTypes.number.isRequired
 }
  
 export default BudgetManagement;

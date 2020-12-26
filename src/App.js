@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Question from './components/Question'
 import Form from './components/Form'
+import List from './components/List'
+import BudgetManagement from './components/BudgetManagement'
 
 function App() {
 
@@ -8,6 +10,17 @@ function App() {
   const [ budget, saveBudget ] = useState(0);
   const [ remaining, saveRemaining ] = useState(0);
   const [ question, updateQuestion ] = useState(true);
+
+  // Define all expenses
+  const [ expenses, updateExpenses ] = useState([]);
+
+
+  // Determine when there is a new expense for updating the remaining
+  useEffect( () => {
+    if (expenses.length != 0) {
+      saveRemaining(remaining - expenses[expenses.length - 1].quantity);
+    }
+  }, [expenses]);
 
   return (
     <>
@@ -28,10 +41,19 @@ function App() {
           : (
               <div className="row">
                 <div className="col-12 col-md-6">
-                  <Form />
+                  <Form
+                    expenses={expenses} 
+                    updateExpenses={updateExpenses}
+                  />
                 </div>
                 <div className="col-12 col-md-6">
-                  
+                  <List 
+                    expenses={expenses}
+                  />
+                  <BudgetManagement
+                    budget={budget}
+                    remaining={remaining}
+                  />
                 </div>
               </div>
             )
